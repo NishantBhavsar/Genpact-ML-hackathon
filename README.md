@@ -2,6 +2,9 @@
 
 [competition link](https://datahack.analyticsvidhya.com/contest/genpact-machine-learning-hackathon/)
 
+__Root of Mean Squared Logarithmic Error : 0.54__
+[__Private Leader Board Rank__](https://datahack.analyticsvidhya.com/contest/genpact-machine-learning-hackathon/pvt_lb) : __79/3872__
+
 ## Problem Statement
 
 Your client is a meal delivery company which operates in multiple cities. They have various fulfillment centers in these cities for dispatching meal orders to their customers. The client wants you to help these centers with demand forecasting for upcoming weeks so that these centers will plan the stock of raw materials accordingly.
@@ -51,4 +54,46 @@ The replenishment of majority of raw materials is done on weekly basis and since
 The evaluation metric for this competition is __100*RMSLE__ where RMSLE is Root of Mean Squared Logarithmic Error across all entries in the test set.
 
 Test data is further randomly divided into Public (30%) and Private (70%) data.
+
+
+## Solution
+
+- Converted this time series problem to regression problem.
+
+#### Data transformation:
+
+1. Here number of orders placed (target variable) is highly right skewd so that Log transformation is applied.
+2. Log transformation of base_price, checkout_price, and num_orders.
+
+#### Feature engineering:
+
+1. For every record difference between base_price and checkout_price.
+2. Differenc of previous week checkout_price and current weeks checkout_price.
+3. Lag features of 10,11, and 12 week lagging features. Here I have used lag of last 10 weeks because we have to predict for 10 weeks in test dataset.
+4. Exponentially weighted mean over last 10, 11, and 12 weeks.
+
+#### Cross validation strategy:
+
+- Last 10 weeks (136 - 145) of every center-meal pair data is used as a Validation dataset from train dataset.
+
+
+#### Model
+1. One single CatBoost model which has __RMSLE__ of 0.54.
+2. High regularization so it does not overfit because of new features made using target variable.
+
+
+#### What didn't work:
+1. just using original data as it is and using catboost regressor gave RMSLE of 1.58
+2. Only using difference between base_price and checkout_price, difference between base_price and checkout_price as a features and not using any lag and exponentially weighed features didn't give good score.
+3. Rolling mean and median over last 26, 52, 104 weeks as features didn't work that well, feature importance was low.
+4. Geographical features had low feature importance, So didn't use them in final model.
+
+
+#### TODO / Improvements:
+
+1. Extensive hyper parameter tuning and feature selection.
+2. Create more features based on Categorical Encoding methods like mean encoding, freqvency encoding, hash encoding etc.
+3. Try more algorithms like xgboost, LightGBM, Linear Regression etc.
+4. Try ARIMA , Prophet etc.
+5. Ensemble of different models.
 
