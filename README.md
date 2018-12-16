@@ -10,6 +10,9 @@ __Root of Mean Squared Logarithmic Error : 0.54__
 
 [Final model Notebook](https://nbviewer.jupyter.org/github/NishantBhavsar/Genpact-ML-hackathon/blob/master/code/final_model.ipynb)
 
+### Libraries used:
+- pandas, numpy, catboost, scikit learn, matplotlib, seaborn
+
 ## Problem Statement
 
 Your client is a meal delivery company which operates in multiple cities. They have various fulfillment centers in these cities for dispatching meal orders to their customers. The client wants you to help these centers with demand forecasting for upcoming weeks so that these centers will plan the stock of raw materials accordingly.
