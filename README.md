@@ -3,7 +3,12 @@
 [competition link](https://datahack.analyticsvidhya.com/contest/genpact-machine-learning-hackathon/)
 
 __Root of Mean Squared Logarithmic Error : 0.54__
+
 [__Private Leader Board Rank__](https://datahack.analyticsvidhya.com/contest/genpact-machine-learning-hackathon/pvt_lb) : __79/3872__
+
+[Analysis and baseline model Notebook](https://nbviewer.jupyter.org/github/NishantBhavsar/Genpact-ML-hackathon/blob/master/code/Analysis-Base-model.ipynb)
+
+[Final model Notebook](https://nbviewer.jupyter.org/github/NishantBhavsar/Genpact-ML-hackathon/blob/master/code/final_model.ipynb)
 
 ## Problem Statement
 
@@ -45,6 +50,7 @@ The replenishment of majority of raw materials is done on weekly basis and since
 
 
 | Variable | Definition |
+| -------- | ---------- |
 | meal_id | Unique ID for the meal |
 | category | Type of meal (beverages/snacks/soups….) |
 | cuisine | Meal cuisine (Indian/Italian/…) |
